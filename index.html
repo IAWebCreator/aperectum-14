@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApeRectum - The Bottom of the Barrel</title>
+    <meta name="description" content="ApeRectum ($AR) is a monument to poor financial decisions. Welcome to the bottom of the anal cryptospace.">
+    
+    <!-- Favicon - using a data URI to embed the logo style directly -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FF8C00%22></rect><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>">
+
+    <style>
+        /* 
+        ==============================================
+        * APE RECTUM - MINIMALIST BRUTALIST THEME
+        * Design Foundation: Material Design Principles (Spacing, Rhythm, Interaction)
+        * Aesthetic: Stark, high-contrast, raw, with a single accent color.
+        * Font Choice: Monospaced font for a raw, terminal-like feel.
+        ==============================================
+        */
+
+        /* --- CSS Custom Properties (Variables) --- */
+        :root {
+            --color-background: #121212;
+            --color-surface: #1E1E1E;
+            --color-primary: #FF8C00; /* Vibrant Orange from logo */
+            --color-on-background: #E0E0E0;
+            --color-on-surface: #FFFFFF;
+            --color-on-primary: #000000;
+            --font-main: 'Roboto Mono', 'Courier New', monospace;
+            --spacing-unit: 8px;
+            --border-radius: 4px;
+            --transition-speed: 0.3s;
+        }
+
+        /* --- Base & Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-on-background);
+            font-family: var(--font-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--color-on-surface);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem); /* Responsive font size */
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            text-transform: uppercase;
+            color: var(--color-primary);
+        }
+
+        p {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            max-width: 65ch; /* Optimal reading length */
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color var(--transition-speed) ease;
+        }
+
+        a:hover, a:focus {
+            color: var(--color-on-surface);
+        }
+
+        /* --- Layout & Containers --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: calc(var(--spacing-unit) * 8) 0;
+        }
+
+        section {
+            border-bottom: 2px solid var(--color-surface);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header --- */
+        .main-header {
+            padding: calc(var(--spacing-unit) * 2) 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-surface);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-unit);
+        }
+
+        .logo-container img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-container .token-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-on-surface);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            font-family: var(--font-main);
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 2px solid var(--color-primary);
+            transition: all var(--transition-speed) ease;
+            border-radius: var(--border-radius);
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-on-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-primary);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: var(--color-on-primary);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 100px; /* Offset for fixed header */
+        }
+
+        #hero .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-on-background);
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .contract-address {
+            background-color: var(--color-surface);
+            padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-unit);
+            margin-top: calc(var(--spacing-unit) * 4);
+            border: 1px solid #333;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contract-address span {
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--color-primary);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: calc(var(--spacing-unit) * 0.5);
+        }
+
+        .copy-btn:hover {
+            color: var(--color-on-surface);
+        }
+
+        #copy-tooltip {
+            visibility: hidden;
+            background-color: var(--color-primary);
+            color: var(--color-on-primary);
+            text-align: center;
+            border-radius: var(--border-radius);
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            margin-top: -40px;
+        }
+
+        #copy-tooltip.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* --- About Section --- */
+        #about .about-content {
+            display: grid;
+            gap: calc(var(--spacing-unit) * 4);
+        }
+
+        /* --- Tokenomics Section --- */
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .tokenomic-card {
+            background-color: var(--color-surface);
+            padding: calc(var(--spacing-unit) * 3);
+            border-radius: var(--border-radius);
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .tokenomic-card h3 {
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .tokenomic-card p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-on-surface);
+            margin: 0;
+        }
+
+        /* --- How to Buy Section --- */
+        .how-to-buy-steps {
+            list-style: none;
+            counter-reset: steps-counter;
+        }
+
+        .how-to-buy-steps li {
+            counter-increment: steps-counter;
+            display: flex;
+            align-items: flex-start;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            background-color: var(--color-surface);
+            padding: calc(var(--spacing-unit) * 3);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .how-to-buy-steps li::before {
+            content: counter(steps-counter);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            min-width: 30px;
+            text-align: right;
+        }
+
+        .how-to-buy-steps li div h3 {
+            margin-bottom: var(--spacing-unit);
+            color: var(--color-on-surface);
+        }
+
+        /* --- Roadmap Section --- */
+        .roadmap-timeline {
+            position: relative;
+            padding-left: calc(var(--spacing-unit) * 6);
+        }
+
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--color-surface);
+        }
+
+        .roadmap-item {
+            position: relative;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: -43px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--color-background);
+            border: 4px solid var(--color-primary);
+        }
+
+        .roadmap-item h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        /* --- Community Section --- */
+        #community {
+            text-align: center;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            text-align: center;
+            padding: calc(var(--spacing-unit) * 4) 5%;
+            border-top: 1px solid var(--color-surface);
+            background-color: var(--color-background);
+        }
+
+        .main-footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .main-footer .disclaimer {
+            margin-top: var(--spacing-unit);
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        /* --- Responsiveness --- */
+        @media (min-width: 768px) {
+            #about .about-content {
+                grid-template-columns: 2fr 1fr;
+                align-items: center;
+            }
+            .about-visual {
+                font-size: 10rem;
+                font-weight: 900;
+                color: var(--color-surface);
+                text-align: center;
+                line-height: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="./logo.png" alt="ApeRectum Logo">
+            <span class="token-name">ApeRectum</span>
+        </div>
+        <a href="#how-to-buy" class="btn btn-primary">Buy $AR</a>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container">
+                <img src="./logo.png" alt="ApeRectum Bear Logo" class="hero-logo">
+                <h1>Welcome to the Bottom.</h1>
+                <p class="hero-subtitle">This is not a journey to the moon. It's a deep dive into the abyss.</p>
+                
+                <div class="contract-address">
+                    <span>Contract:</span>
+                    <span id="contract-id">CHiNsA2B6ZbmKnEmHPCbbX9aXJyoJzAtcLpHEDd6Qyq3</span>
+                    <button class="copy-btn" id="copy-button" aria-label="Copy contract address">
+                        [COPY]
+                    </button>
+                    <div id="copy-tooltip">Copied!</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <div class="container">
+                <div class="about-content">
+                    <div>
+                        <h2>What is This?</h2>
+                        <p>
+                            ApeRectum is a statement. It's a monument to poor financial decisions, a testament to the chaos of the cryptospace. We embrace the absurdity.
+                        </p>
+                        <p>
+                            The name says it all. To "ape" is to buy with reckless abandon. The "rectum" is where we're headed. Our logo, a bear, traditionally signals a market crash. The irony is the point. We are investing in the inevitable downturn, with a smile.
+                        </p>
+                        <p>
+                            This is not for the faint of heart. It's for the seasoned degen who has seen it all and wants to laugh in the face of the void.
+                        </p>
+                    </div>
+                    <div class="about-visual">
+                        $AR
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tokenomics Section -->
+        <section id="tokenomics" class="fade-in">
+            <div class="container">
+                <h2>Tokenomics</h2>
+                <div class="tokenomics-grid">
+                    <div class="tokenomic-card">
+                        <h3>Total Supply</h3>
+                        <p>A Lot</p>
+                    </div>
+                    <div class="tokenomic-card">
+                        <h3>Taxes</h3>
+                        <p>0% / 0%</p>
+                    </div>
+                    <div class="tokenomic-card">
+                        <h3>Liquidity</h3>
+                        <p>Burned</p>
+                    </div>
+                    <div class="tokenomic-card">
+                        <h3>Utility</h3>
+                        <p>Existential Dread</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Buy Section -->
+        <section id="how-to-buy" class="fade-in">
+            <div class="container">
+                <h2>How to Descend</h2>
+                <ol class="how-to-buy-steps">
+                    <li>
+                        <div>
+                            <h3>Step 1: Question Your Choices</h3>
+                            <p>First, get a Solana wallet like Phantom or Solflare. This is the vessel for your journey downwards.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h3>Step 2: Acquire SOL</h3>
+                            <p>You'll need some SOL in your wallet. Buy it on a centralized exchange and send it to your new wallet address.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h3>Step 3: Swap for $AR</h3>
+                            <p>Go to a decentralized exchange like Raydium or Jupiter. Paste our contract address to swap your SOL for $AR.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h3>Step 4: Embrace the Chaos</h3>
+                            <p>You've done it. You are now officially aping the rectum. Watch your wallet and feel the void stare back.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Roadmap Section -->
+        <section id="roadmap" class="fade-in">
+            <div class="container">
+                <h2>The Path Forward</h2>
+                <div class="roadmap-timeline">
+                    <div class="roadmap-item">
+                        <h3>Phase 1: Exist</h3>
+                        <p>The token is created. It is here. We acknowledge its presence in the vast, dark expanse of the blockchain.</p>
+                    </div>
+                    <div class="roadmap-item">
+                        <h3>Phase 2: Persist</h3>
+                        <p>We continue to exist. No promises, no hype. Just the quiet hum of the chain and the slow march of the bear.</p>
+                    </div>
+                    <div class="roadmap-item">
+                        <h3>Phase 3: Contemplate</h3>
+                        <p>The community, if it forms, will be encouraged to reflect on the nature of value and the absurdity of it all. Or just post memes. Probably just memes.</p>
+                    </div>
+                    <div class="roadmap-item">
+                        <h3>Phase 4: The Inevitable</h3>
+                        <p>What comes next? Who knows. That's the beauty of staring into the abyss. It might stare back.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="fade-in">
+            <div class="container">
+                <h2>The Herd</h2>
+                <p>We are a collective of the disillusioned, the ironic, and the brave. Find us in the darkest corners of the internet. Or don't. It's probably for the best.</p>
+                <!-- NOTE: Social media links are omitted as no URLs were provided in the WEB_INPUT. -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2024 ApeRectum. All rights reserved, somehow.</p>
+        <p class="disclaimer">This is not financial advice. This is a meme. Seriously.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Copy to Clipboard Functionality ---
+            const copyButton = document.getElementById('copy-button');
+            const contractId = document.getElementById('contract-id').textContent;
+            const tooltip = document.getElementById('copy-tooltip');
+
+            copyButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(contractId).then(() => {
+                    // Show tooltip
+                    tooltip.classList.add('visible');
+
+                    // Hide tooltip after 2 seconds
+                    setTimeout(() => {
+                        tooltip.classList.remove('visible');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+
+            // --- Scroll Fade-in Animation ---
+            const sections = document.querySelectorAll('section.fade-in');
+
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% of the item must be visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optional: unobserve after it's visible so it doesn't re-trigger
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+        });
+    </script>
+
+</body>
+</html>
